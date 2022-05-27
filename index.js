@@ -135,7 +135,8 @@ const datosFetch= async () => {
                   method: 'GET',
                   headers: new Headers({
                         'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': '*',                         
+                        'Access-Control-Allow-Origin': 'GET',                         
+                        'Content-type': 'application/json'
                   }),
                   mode: 'cors',
             })
