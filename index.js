@@ -157,6 +157,8 @@ async function rec(){
             const datos = request.response;            
             let data=[]
             let juego=datos.find(item=>item.title.trim().toLowerCase()===input.value.trim().toLowerCase())            
+            let indice = datos.indexOf(juego);
+            console.log(indice)
             console.log(juego)
             if(juego===undefined){
                   coll.innerHTML=''
@@ -164,7 +166,7 @@ async function rec(){
             data[0]=juego            
             template_card_lf.querySelector('.card-text').textContent = data[0].short_description
             template_card_lf.querySelector('h5').textContent = data[0].title
-            template_card_lf.querySelector('p').textContent = '$'+data[0].precio
+            template_card_lf.querySelector('p').textContent = '$'+arr[indice]
             template_card_lf.querySelector('img').setAttribute('src', data[0].thumbnail)            
             template_card_lf.querySelector('#btn-dark').dataset.id=data[0].id
             const clon=template_card_lf.cloneNode(true)
