@@ -8,8 +8,8 @@
 	background-color: #0d6efd; /* Color de fondo */
 	padding: 18px 30px; /* Relleno del boton */
 	position: fixed;
-	bottom: 40px;
-	right: 40px;
+	bottom: 20px;
+	right: 60px;
 	transition: all 300ms ease 0ms;
 	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 	z-index: 99;
@@ -36,14 +36,43 @@
 	top: 0; /* Posicionamos la cabecera pegada arriba */
 	position: fixed; /* Hacemos que la cabecera tenga una posición fija */	
 	z-index: 99;
+	padding: 0;
 }
 #navbarColor01{
 	box-sizing: content-box;
 	width: 25%;
 }
 #carouselExampleControls{
-	margin-top: 67px;
+	margin-top: 90px;
 }
 #tarjeta{
 	margin-top: 120px; 
+}
+#lf{
+	position: relative;
+	margin-top: -200px;
+	margin-bottom:100px;
+	z-index: 90;
+}
+.container-fluid{
+	padding:0;
+}
+footer{
+	margin-top:50px
+}
+@media (max-width: 1000px){
+	#lf{
+		margin-top: 20px; 
+		margin-bottom: -80px;
+	}
+	#coll{
+		margin-top: 120px;
+	}
+	#tarjetaBuscar{		
+		width: 60%;		
+	}
+	#btn-dangerr{
+		margin-top:100%;
+		margin-right: 40%;
+	}
 }

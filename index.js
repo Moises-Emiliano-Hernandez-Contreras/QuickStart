@@ -1,26 +1,127 @@
 let template_card=document.getElementById('template-cards').content
 const template_footer=document.getElementById('template-footer').content
 const template_carrito=document.getElementById('template-carrito').content
+let template_card_lf=document.getElementById('template-cards-lf').content
 let cards=document.getElementById('cards')
 let items=document.getElementById('items')
 let footer=document.getElementById('footer')
-
+let input = document.getElementById('input')
 let collapse = document.getElementById('collapse')
 let element = document.getElementById('letrero')
-
+let coll=document.getElementById('coll')
 //let pay=document.getElementById('pay')
 let cambio=false
 const fragmnto=document.createDocumentFragment()
 let carrito={}
-
+let arr=[
+      1402,
+      534,
+      1458,
+      659,
+      1058,
+      1048,
+      826,
+      964,
+      1277,
+      1021,
+      321,
+      564,
+      216,
+      748,
+      1081,
+      1367,
+      222,
+      1366,
+      911,
+      766,
+      1110,
+      1123,
+      1390,
+      1414,
+      1048,
+      278,
+      642,
+      766,
+      1274,
+      1147,
+      275,
+      727,
+      760,
+      861,
+      1358,
+      1426,
+      1093,
+      283,
+      657,
+      397,
+      1482,
+      288,
+      808,
+      609,
+      789,
+      444,
+      1168,
+      939,
+      588,
+      379,
+      1475,
+      1342,
+      1290,
+      398,
+      1100,
+      540,
+      704,
+      470,
+      697,
+      542,
+      603,
+      644,
+      435,
+      1410,
+      942,
+      896,
+      285,
+      659,
+      1222,
+      251,
+      476,
+      458,
+      1234,
+      1203,
+      1424,
+      855,
+      1301,
+      1052,
+      347,
+      1483,
+      369,
+      968,
+      1015,
+      1245,
+      928,
+      1029,
+      1314,
+      953,
+      1249,
+      764,
+      1119,
+      242,
+      1457,
+      1292,
+      1105,
+      1126,
+      1285
+]
 document.addEventListener('DOMContentLoaded',()=>{
-      datosFetch()
+      datosFetch()            
       if (localStorage.getItem('carrito')) {
-            carrito=JSON.parse(localStorage.getItem('carrito'))
+            carrito=JSON.parse(localStorage.getItem('carrito'))            
             pintarCarrito()
       }
 })
-
+coll.addEventListener('click',e=>{
+      aniadir(e)
+})
 cards.addEventListener('click',e=>{
       aniadir(e)
 })
@@ -28,37 +129,45 @@ items.addEventListener('click',e=>{
       btnAccion(e)
 })
 
-function random(min, max) {
-      return Math.floor((Math.random() * (max - min + 1)) + min);
-  }
-
 const datosFetch= async () => {
       try {
             const res = await fetch('https://www.freetogame.com/api/games?platform=pc&category=shooter')
-            const data = await res.json()
-            
-            pintar_tarjeta(filtro(data,''))
+            const data = await res.json()            
+            pintar_tarjeta(data)
+            return data
       } catch (error) {
             console.error(error)
       }      
 }
-const filtro=(arreglo,palabra)=>{      
-      if(palabra===""){
-            return arreglo
-      }else{
-            arreglo.forEach(item=>{
-                  if(item.title===palabra){
-                        console.log()                        
-                  }
-            })
-            return arreglo            
+async function rec(){
+      coll.innerHTML=''
+      let datos=await datosFetch()
+      let data=[]
+      let juego=datos.find(item=>item.title.trim().toLowerCase()===input.value.trim().toLowerCase())
+      console.log(juego)
+      if(juego===undefined){
+            coll.innerHTML=''
       }
+      data[0]=juego            
+      template_card_lf.querySelector('.card-text').textContent = data[0].short_description
+      template_card_lf.querySelector('h5').textContent = data[0].title
+      template_card_lf.querySelector('p').textContent = '$'+data[0].precio
+      template_card_lf.querySelector('img').setAttribute('src', data[0].thumbnail)            
+      template_card_lf.querySelector('#btn-dark').dataset.id=data[0].id
+      const clon=template_card_lf.cloneNode(true)
+      fragmnto.appendChild(clon)
+      coll.appendChild(fragmnto)       
+      
 }
-const pintar_tarjeta=data=>{
-      data.forEach(producto=>{
+const pintar_tarjeta=data=>{ 
+      let prec=arr      
+      let i=0
+      data.forEach(producto=>{             
+            producto.precio= prec[i]
+            i++
             template_card.querySelector('.card-text').textContent = producto.short_description
             template_card.querySelector('h5').textContent = producto.title
-            template_card.querySelector('p').textContent = '$'+random(200,1500)
+            template_card.querySelector('p').textContent = '$'+producto.precio
             template_card.querySelector('img').setAttribute('src', producto.thumbnail)            
             template_card.querySelector('#btn-dark').dataset.id=producto.id
             const clon=template_card.cloneNode(true)
@@ -73,8 +182,7 @@ const aniadir=(e)=>{
       }
       e.stopPropagation()
 }
-const setCarrito=(objeto)=>{      
-      
+const setCarrito=(objeto)=>{            
       const producto={                        
             title:objeto.querySelector('h5').textContent,
             precio:objeto.querySelector('p').textContent,

@@ -5,37 +5,64 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" href="./favicon.ico" />
       <title>Carrito</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
       <link rel="stylesheet" href="./index.css">
 </head>
 
-<body>
-      <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-2 fs-4" id="cabecera">
-                  <div class="container-fluid d-flex justify-content-between">
-                        <a class=" container navbar-brand" href="./index.html">Logo</a>                                                
-                        
+<body>      
+<!--              <nav class="navbar navbar-expand navbar-dark bg-primary" id="cabecera">
+                  <div class="container-fluid d-flex justify-content-between" id="nav">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                        </button>                        
+                        <a class=" container navbar-brand" href="./index.html">
+                              <img src="./Mi proyecto.png" alt="logo" height='80px'>
+                        </a>                                                                       
                         <div class="container text-light" style="font-size: 34px;">QuickStart</div>
-                        
-                        <div class="container collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav me-auto">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="./index.html">Inicio</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="./contacto.html">Contacto</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="./soporte.html">Soporte</a>
-                  </li>
-                </ul>
-                        </div>
-                        
+                        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                              <div class="navbar-nav">
+                                    <a class="nav-link active" href="./index.html">Inicio</a>
+                                    <a class="nav-link active" href="./conocenos.html">Conocenos</a>                                                                                
+                                    <a class="nav-link active" href="./contacto.html">Contacto</a>                                                            
+                                    <a class="nav-link active" href="./soporte.html">Soporte</a>                              
+                              </div>
+                        </div>                      
+                  
+            </div>
+            </nav>    -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary" id="cabecera">
+                  <div class="container-fluid">
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                         <a class=" container navbar-brand" href="./index.html">
+                             <img src="./Mi proyecto.png" alt="logo" height='80px'>
+                        </a>                    
+                        <div class="container text-light" style="font-size: 34px;">QuickStart</div>
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-light">
+                        <li class="nav-item">
+                          <a class="nav-link active text-light" aria-current="page" href="./index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active text-light" href="./conocenos.html">Conocenos</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active text-light" href="./soporte.html">Soporte</a>
+                        </li>
+                        <li class="nav-item">
+                              <a class="nav-link active text-light" href="./contacto.html">Contacto</a>
+                        </li>                        
+                      </ul>
+                    </div>
                   </div>
-            </nav>           
-      </header>
+            </nav>
+
       <div id="carouselExampleControls" class="carousel slide cont" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -55,6 +82,34 @@
             </button>
       </div>                 
     
+      <div>
+            <div id="lf">
+                  <input class="form-control form-control-lg w-50 mx-auto container" type="search"
+                  placeholder="Buscar..." aria-label=".form-control-lg example" id="input">      
+                  <button class="form-control mt-3 btn btn-primary w-25 d-flex justify-content-center container" type="button" onclick="rec()">Buscar</button>            
+            </div>
+                  <div  class="container" id="coll"></div>    
+                    
+            
+            <template id="template-cards-lf">
+                  <h2 class="text-center">Resultados</h2>
+                  <button id="btn-dangerr" class="btn btn-danger float-end mx-5"
+                  onclick="document.getElementById('coll').innerHTML=''">Cerrar</button>
+                  <div class="col-auto mb-4 col-md-3" id="tarjetaBuscar">
+                        <div class="card">                              
+                              <img src="" alt="" class="card-img-top">
+                              <div class="card-body">
+                                    <h5>Titulo</h5>
+                                    <p>Precio</p>
+                                    <p class="card-text">descripcion</p>
+                                    <button id="btn-dark" class="btn btn-dark">Comprar</button>
+                              </div>
+                        </div>
+                  </div>                  
+            </template>            
+      </div>
+
+
       <div class="container pt-5 position-relative mt-3">
             <div class="row pt-5" id="cards"></div>
 
@@ -167,7 +222,7 @@
       </template>
 
       <template id="template-cards">
-            <div class="col-3 mb-4 col-md-3">
+            <div class="col-auto mb-4 col-md-3">
                   <div class="card">
                         <img src="" alt="" class="card-img-top">
                         <div class="card-body">
@@ -179,7 +234,26 @@
                   </div>
             </div>
       </template>
-
+      <hr>
+      <footer class="d-flex justify-content-between container">
+            <div class="text-primary container">
+                  <h4>Elaborado</h4>
+                  <p>Este trabajo fue creado como parte<br> de las actividades de 
+                  la materia de <br>comercio electrónico del semetre <br> 2022-2022.</p>
+            </div>
+            <div class="text-primary container">
+                 Copyright © 2022 by Optativa(Comercio Electrónico)
+            </div>
+            <div class="text-primary container">
+                  <h4>Sitios de interes</h4>
+                  <ul>
+                        <li><a href="./contacto.html">Contacto</a></li>
+                        <li><a href="./soporte.html">Soporte</a></li>
+                        <li><a href="./conocenos.html">Conocenos</a></li>
+                        <li><a href="./index.html">Inicio</a></li>                        
+                  </ul>
+            </div>
+      </footer>
       <script id="jason" type="text/javascript" src="./api.json"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
