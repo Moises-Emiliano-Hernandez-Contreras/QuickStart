@@ -156,7 +156,7 @@ async function rec(){
       request.onload = function() {
             const datos = request.response;            
             let data=[]
-            let juego=datos.find(item=>item.title.trim().toLowerCase()===input.value.trim().toLowerCase())            
+            let juego=datos.find(item=>item.title.trim().toLowerCase().includes(input.value.trim().toLowerCase()))             
             let indice = datos.indexOf(juego);
             console.log(indice)
             console.log(juego)
