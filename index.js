@@ -136,6 +136,7 @@ const datosFetch= async () => {
                   headers: new Headers({
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*',
+                         mode: 'cors',
                   }),
             })
             const data = await res.json()            
