@@ -146,24 +146,32 @@ const datosFetch= async () => {
       }      
 }
 async function rec(){
-      coll.innerHTML=''
-      let datos=await datosFetch()
-      let data=[]
-      let juego=datos.find(item=>item.title.trim().toLowerCase()===input.value.trim().toLowerCase())
-      console.log(juego)
-      if(juego===undefined){
-            coll.innerHTML=''
-      }
-      data[0]=juego            
-      template_card_lf.querySelector('.card-text').textContent = data[0].short_description
-      template_card_lf.querySelector('h5').textContent = data[0].title
-      template_card_lf.querySelector('p').textContent = '$'+data[0].precio
-      template_card_lf.querySelector('img').setAttribute('src', data[0].thumbnail)            
-      template_card_lf.querySelector('#btn-dark').dataset.id=data[0].id
-      const clon=template_card_lf.cloneNode(true)
-      fragmnto.appendChild(clon)
-      coll.appendChild(fragmnto)       
-      
+      coll.innerHTML=''      
+      //let datos= datosFetch()
+      const requestURL = 'https://moises-emiliano-hernandez-contreras.github.io/games/games.json';
+      const request = new XMLHttpRequest();
+      request.open('GET', requestURL)
+      request.responseType = 'json';
+      request.send();
+      request.onload = function() {
+            const datos = request.response;            
+            let data=[]
+            let juego=datos.find(item=>item.title.trim().toLowerCase()===input.value.trim().toLowerCase())            
+            console.log(juego)
+            if(juego===undefined){
+                  coll.innerHTML=''
+            }
+            data[0]=juego            
+            template_card_lf.querySelector('.card-text').textContent = data[0].short_description
+            template_card_lf.querySelector('h5').textContent = data[0].title
+            template_card_lf.querySelector('p').textContent = '$'+data[0].precio
+            template_card_lf.querySelector('img').setAttribute('src', data[0].thumbnail)            
+            template_card_lf.querySelector('#btn-dark').dataset.id=data[0].id
+            const clon=template_card_lf.cloneNode(true)
+            fragmnto.appendChild(clon)
+            coll.appendChild(fragmnto)       
+            
+      }      
 }
 const pintar_tarjeta=data=>{ 
       let prec=arr      
