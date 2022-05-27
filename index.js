@@ -9,8 +9,8 @@ let input = document.getElementById('input')
 let collapse = document.getElementById('collapse')
 let element = document.getElementById('letrero')
 let coll=document.getElementById('coll')
-//let pay=document.getElementById('pay')
-let cambio=false
+
+
 const fragmnto=document.createDocumentFragment()
 let carrito={}
 let arr=[
@@ -131,18 +131,16 @@ items.addEventListener('click',e=>{
 
 const datosFetch= async () => {
       try {
-            const res = await fetch('https://www.freetogame.com/api/games?platform=pc&category=shooter', { 
-                  method: 'GET',
-                  headers: new Headers({
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': 'GET',                         
-                        'Content-type': 'application/json'
-                  }),
-                  mode: 'cors',
-            })
-            const data = await res.json()            
-            pintar_tarjeta(data)
-            return data
+            const requestURL = 'https://moises-emiliano-hernandez-contreras.github.io/games/games.json';
+            const request = new XMLHttpRequest();
+            request.open('GET', requestURL)
+            request.responseType = 'json';
+            request.send();
+            request.onload = function() {
+                  const superHeroes = request.response;
+                  pintar_tarjeta(superHeroes)
+                  return superHeroes
+            }                                          
       } catch (error) {
             console.error(error)
       }      
