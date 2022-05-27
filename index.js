@@ -131,8 +131,12 @@ items.addEventListener('click',e=>{
 
 const datosFetch= async () => {
       try {
-            const res = await fetch('https://www.freetogame.com/api/games?platform=pc&category=shooter', { 
-                  mode: 'no-cors' // 'cors' by default
+            const res = await fetch('https://cors-anywhere.herokuapp.com/'+'https://www.freetogame.com/api/games?platform=pc&category=shooter', { 
+                  method: 'GET',
+                  headers: new Headers({
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                  }),
             })
             const data = await res.json()            
             pintar_tarjeta(data)
